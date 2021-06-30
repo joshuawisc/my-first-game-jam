@@ -44,7 +44,7 @@ public class Generation : MonoBehaviour
     {
         // Get door points from room
 
-        foreach (GameObject room in rooms)
+        foreach (GameObject room in new List<GameObject>(rooms))
             
         {
             if (room == null)
