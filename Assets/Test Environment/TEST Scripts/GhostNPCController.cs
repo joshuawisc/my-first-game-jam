@@ -21,7 +21,7 @@ public class GhostNPCController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.tag + " Entered Sight");
+        //Debug.Log(other.tag + " Entered Sight");
         if (other.CompareTag("Player"))
         {
             anim.SetBool("isIdling", false);
