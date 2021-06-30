@@ -6,23 +6,28 @@ using System.Xml;
 using UnityEngine;
 
 
-public class PlayableCharacter : ICharacter
+
+public class GunSkeletonEnemy : INonPlayableCharacter, IDamageable
 {
+    #region PROPERTIES
     public Vector3 Position { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
     public string InstanceID => throw new NotImplementedException();
 
+    public int health { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     public int Health { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public int MaxHealth { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public bool IsMelee { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public float AttackDamage { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public float HeadShotMult { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public float ShotDelay { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public float ReloadAnimLength { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public float Range { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public float FalloffMult { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public float Accuracy { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public int maximumHealth { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public int MaximumHealth { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+    public GameObject Actor => throw new NotImplementedException();
+    #endregion
+
+    #region PUBLIC METHODS
+    public void Damage(int dmg)
+    {
+        throw new NotImplementedException();
+    }
 
     public void Dispose()
     {
@@ -38,4 +43,17 @@ public class PlayableCharacter : ICharacter
     {
         throw new NotImplementedException();
     }
+    #endregion
+
+}
+
+
+public class NonPlayableCharacterControllerState 
+{
+
+}
+
+public class AnimationStateContainer 
+{
+
 }
