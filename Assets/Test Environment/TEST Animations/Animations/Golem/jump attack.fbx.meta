@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 27cf7fe275115b14881b352e2d5afd06
+guid: 973f942c88ae316498f90e0c73aacfbd
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Death from Front Headshot
+    second: Jump Attack
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Death from Front Headshot
+      name: Jump Attack
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 85
+      lastFrame: 227
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 27cf7fe275115b14881b352e2d5afd06
+guid: e000fc1bf8a2a264e93abe73b0834d9f
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Death from Front Headshot
+    second: Run
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -35,19 +35,19 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Death from Front Headshot
+      name: Run
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 85
+      lastFrame: 52
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0

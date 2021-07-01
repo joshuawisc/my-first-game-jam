@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 27cf7fe275115b14881b352e2d5afd06
+guid: f8f0187801abe2e4c9a6f1b24772f8fe
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Death from Front Headshot
+    second: Slam Right
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Death from Front Headshot
+      name: Slam Right
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 85
+      lastFrame: 136
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
