@@ -120,6 +120,7 @@ public class Generation : MonoBehaviour
         for (int j = 0; j < cy; j++)
         {
             string forwards = "";
+            string currentline = "";
             for (int i = 0; i < cx; i++)
             {
                 string forward = "   ";
@@ -167,10 +168,10 @@ public class Generation : MonoBehaviour
                         lr = lr + " ";
                     }                   
                 }
-                output += lr;
+                currentline += lr;
                 forwards += forward;
             }
-            output += "\n" + forwards + "\n";
+            output += forwards + "\n" + currentline + "\n";
         }
         Debug.Log(output);
     }
@@ -268,26 +269,26 @@ public class Generation : MonoBehaviour
         int xDiff = s1.x - s2.x;
         int yDiff = s1.y - s2.y;
 
-        if (Mathf.Abs(xDiff) == 1)
+        if (xDiff == 1)
         {
             s1.left = s2;
             s2.right = s1;
             return;
         }
-        else if (Mathf.Abs(xDiff) == -1)
+        else if (xDiff == -1)
         {
             s1.right = s2;
             s2.left = s1;
             return;
         }
 
-        if (Mathf.Abs(yDiff) == 1)
+        if (yDiff == 1)
         {
             s1.up = s2;
             s2.down = s1;
             return;
         }
-        else if (Mathf.Abs(yDiff) == -1)
+        else if (yDiff == -1)
         {
             s1.down = s2;
             s2.up = s1;
