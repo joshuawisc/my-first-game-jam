@@ -119,12 +119,58 @@ public class Generation : MonoBehaviour
         string output = "";
         for (int j = 0; j < cy; j++)
         {
+            string forwards = "";
             for (int i = 0; i < cx; i++)
             {
-                if (i == 3 && j == 0) output += "s";
-                else output += (chunk[i, j] == null) ? "x" : "o";
+                string forward = "   ";
+                string lr = " o ";
+                var c = chunk[i, j];
+                if (c != null)
+                {
+                    if (i == (cx/2) && j == 0)
+                    {
+                        lr = "s";
+                    }
+                    else if(i == (cx/2) && j == cy - 1)
+                    {
+                        lr = "e";
+                    }
+                    else
+                    {
+                        lr = "x";
+                    }
+
+                    if (c.left != null)
+                    {
+                        lr = "-" + lr;
+                    }
+                    else
+                    {
+                        lr = " " + lr;
+                    }
+
+                    if (c.up != null)
+                    {
+                        forward = "  |  ";
+                    }
+                    else
+                    {
+                        forward = "     ";
+                    }
+
+                    if (c.right != null)
+                    {
+                        lr = lr + "-";
+                    }
+                    else
+                    {
+                        lr = lr + " ";
+                    }                   
+                }
+                output += lr;
+                forwards += forward;
             }
-            output += "\n";
+            output += "\n" + forwards + "\n";
         }
         Debug.Log(output);
     }
