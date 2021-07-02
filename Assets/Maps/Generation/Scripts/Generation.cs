@@ -109,6 +109,163 @@ public class Generation : MonoBehaviour
 
         }
         */
+        GenerateMap(7,7);
     }
+
+
+    private void GenerateMap(int cx, int cy)
+    {
+        var chunk = GenerateChunk(cx, cy);
+        string output = "";
+        for (int j = 0; j < cy; j++)
+        {
+            for (int i = 0; i < cx; i++)
+            {
+                if (i == 3 && j == 0) output += "s";
+                else output += (chunk[i, j] == null) ? "x" : "o";
+            }
+            output += "\n";
+        }
+        Debug.Log(output);
+    }
+
+    private GenerationMapShell[,] GenerateChunk(int cx, int cy)
+    {
+        GenerationMapShell[,] chunk = new GenerationMapShell[cx, cy];
+        List<GenerationMapShell> prevMoves = new List<GenerationMapShell>();
+
+        // step 1 : Add the chunk start and end
+        int center = (cx / 2);
+        var start = new GenerationMapShell(center, 0);
+        chunk[center, 0] = start;
+        var end = new GenerationMapShell(center, cy - 1);
+        chunk[center, cy - 1] = end;
+
+        prevMoves.Add(start);
+
+        while (prevMoves.Count > 0)
+        {
+            var stepMoves = new List<GenerationMapShell>();
+            foreach (var shell in prevMoves)
+            {
+                bool[] currentMoves = GetPossibleMoves(shell, cx, cy);
+
+                for (int i = 0; i < 3; i ++)
+                {
+                    if (currentMoves[i])
+                    {                       
+                        currentMoves[i] = Random.Range(0, 3) != 1;
+                        if (!currentMoves[0] && !currentMoves[1] && !currentMoves[2])
+                        {
+                            currentMoves[i] = true;
+                        }
+                    }
+                }
+                
+                if (currentMoves[0])
+                {
+                    // Add top edge
+                    if (chunk[shell.x, shell.y + 1] == null)
+                    {
+                        chunk[shell.x, shell.y + 1] = new GenerationMapShell(shell.x, shell.y + 1);
+                        stepMoves.Add(chunk[shell.x, shell.y + 1]);
+                    }
+                    AddEdge(shell, chunk[shell.x, shell.y + 1]);
+                }
+                if (currentMoves[1])
+                {
+                    // Add left edge
+                    if (chunk[shell.x - 1, shell.y] == null)
+                    {
+                        chunk[shell.x - 1, shell.y] = new GenerationMapShell(shell.x - 1, shell.y);
+                        stepMoves.Add(chunk[shell.x - 1, shell.y]);
+                    }
+                    AddEdge(shell, chunk[shell.x - 1, shell.y]);
+                }
+                if (currentMoves[2])
+                {
+                    // Add right edge
+                    if (chunk[shell.x + 1, shell.y] == null)
+                    {
+                        chunk[shell.x + 1, shell.y] = new GenerationMapShell(shell.x + 1, shell.y);
+                        stepMoves.Add(chunk[shell.x + 1, shell.y]);
+                    }
+                    AddEdge(shell, chunk[shell.x + 1, shell.y]);
+                }
+            }
+            prevMoves = stepMoves;
+        }
+
+        return chunk;
+    }
+
+    /* Never report backwards
+     * Up: 0
+     * Left: 1
+     * Right: 2
+     */
+    private bool[] GetPossibleMoves(GenerationMapShell shell, int cx, int cy)
+    {
+        bool[] ret = new bool[3];
+        int x = shell.x;
+        int y = shell.y;
+
+        ret[0] = (y + 1 < cy);
+        ret[1] = (x - 1 >= 0);
+        ret[2] = (x + 1 < cx);
+
+        return ret;
+    }
+
+    private void AddEdge(GenerationMapShell s1, GenerationMapShell s2)
+    {
+        int xDiff = s1.x - s2.x;
+        int yDiff = s1.y - s2.y;
+
+        if (Mathf.Abs(xDiff) == 1)
+        {
+            s1.left = s2;
+            s2.right = s1;
+            return;
+        }
+        else if (Mathf.Abs(xDiff) == -1)
+        {
+            s1.right = s2;
+            s2.left = s1;
+            return;
+        }
+
+        if (Mathf.Abs(yDiff) == 1)
+        {
+            s1.up = s2;
+            s2.down = s1;
+            return;
+        }
+        else if (Mathf.Abs(yDiff) == -1)
+        {
+            s1.down = s2;
+            s2.up = s1;
+            return;
+        }
+    }
+
+    private class GenerationMove 
+    {
+        public bool left, right, up, down;
+    }
+
+    private class GenerationMapShell 
+    {
+        public int x;
+        public int y;
+        public GenerationMapShell left;
+        public GenerationMapShell right;
+        public GenerationMapShell up;
+        public GenerationMapShell down;
+        public GenerationMapShell(int xi, int yi) { 
+            x = xi; y = yi; 
+        }
+    }
+    
 
 }
