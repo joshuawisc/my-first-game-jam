@@ -116,65 +116,10 @@ public class Generation : MonoBehaviour
     private void GenerateMap(int cx, int cy)
     {
         var chunk = GenerateChunk(cx, cy);
-        string output = "";
-        for (int j = 0; j < cy; j++)
-        {
-            string forwards = "";
-            string currentline = "";
-            for (int i = 0; i < cx; i++)
-            {
-                string forward = "   ";
-                string lr = " o ";
-                var c = chunk[i, j];
-                if (c != null)
-                {
-                    if (i == (cx/2) && j == 0)
-                    {
-                        lr = "s";
-                    }
-                    else if(i == (cx/2) && j == cy - 1)
-                    {
-                        lr = "e";
-                    }
-                    else
-                    {
-                        lr = "x";
-                    }
-
-                    if (c.left != null)
-                    {
-                        lr = "-" + lr;
-                    }
-                    else
-                    {
-                        lr = " " + lr;
-                    }
-
-                    if (c.up != null)
-                    {
-                        forward = "  |  ";
-                    }
-                    else
-                    {
-                        forward = "     ";
-                    }
-
-                    if (c.right != null)
-                    {
-                        lr = lr + "-";
-                    }
-                    else
-                    {
-                        lr = lr + " ";
-                    }                   
-                }
-                currentline += lr;
-                forwards += forward;
-            }
-            output += forwards + "\n" + currentline + "\n";
-        }
-        Debug.Log(output);
+        DEBUGChunkGeneration(chunk, cx, cy);
     }
+
+    
 
     private GenerationMapShell[,] GenerateChunk(int cx, int cy)
     {
@@ -294,6 +239,41 @@ public class Generation : MonoBehaviour
             s2.up = s1;
             return;
         }
+    }
+
+    private void DEBUGChunkGeneration(GenerationMapShell[,] chunk, int cx, int cy)
+    {
+        string output = "";
+        for (int j = 0; j < cy; j++)
+        {
+            string forwards = "";
+            string currentline = "";
+            for (int i = 0; i < cx; i++)
+            {
+                string forward = "   ";
+                string lr = " o ";
+                var c = chunk[i, j];
+                if (c != null)
+                {
+                    if (i == (cx / 2) && j == 0) lr = "s";
+                    else if (i == (cx / 2) && j == cy - 1) lr = "e";
+                    else lr = "x";
+
+                    if (c.left != null) lr = "-" + lr;
+                    else lr = " " + lr;
+
+                    if (c.up != null) forward = "  |  ";
+                    else forward = "     ";
+
+                    if (c.right != null) lr = lr + "-";
+                    else lr = lr + " ";
+                }
+                currentline += lr;
+                forwards += forward;
+            }
+            output += forwards + "\n" + currentline + "\n";
+        }
+        Debug.Log(output);
     }
 
     private class GenerationMove 
