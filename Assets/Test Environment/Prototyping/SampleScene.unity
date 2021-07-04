@@ -243,7 +243,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3042088987412132314, guid: 396dbb3d6f87a9f4f9879e510ef3e305, type: 3}
       propertyPath: m_Name
-      value: Potion_Red
+      value: Potion_Health_Small
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 396dbb3d6f87a9f4f9879e510ef3e305, type: 3}
@@ -2332,7 +2332,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7723068225846951476, guid: d3125bc82f4b248e5a29f232ba9d6a68, type: 3}
   m_PrefabInstance: {fileID: 1567342215}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2021597536
+--- !u!114 &2021597540
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2344,7 +2344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35088fc575462334a9338ec73770a9dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _self: {fileID: 2021597536}
+  _self: {fileID: 2021597540}
 --- !u!1 &2048698761
 GameObject:
   m_ObjectHideFlags: 0
@@ -2517,7 +2517,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1964024512195000, guid: a104402ef782ca74588bc73dfec6fb9c, type: 3}
       propertyPath: m_Name
-      value: Key
+      value: Key_Gold
       objectReference: {fileID: 0}
     - target: {fileID: 4144003266972280, guid: a104402ef782ca74588bc73dfec6fb9c, type: 3}
       propertyPath: m_RootOrder
