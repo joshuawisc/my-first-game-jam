@@ -93,7 +93,7 @@ public interface IItem : IInteractable
 
 }
 
-public interface IConsumeable
+public interface IConsumable
 {
     void Use();
 }

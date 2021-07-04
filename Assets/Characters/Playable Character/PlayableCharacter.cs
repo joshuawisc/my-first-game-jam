@@ -136,10 +136,10 @@ public class PlayableCharacter : MonoBehaviour, ICharacter, IDamageable
             return;
         }
 
-        if (_mainHandItem is IConsumeable)
+        if (_mainHandItem is IConsumable)
         {
             //TODO change this to consume
-            ((IConsumeable)_mainHandItem).Use();
+            ((IConsumable)_mainHandItem).Use();
         }
 
         _mainHandItem.Use();
