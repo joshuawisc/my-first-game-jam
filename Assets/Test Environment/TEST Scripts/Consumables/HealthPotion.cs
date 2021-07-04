@@ -2,78 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthPotion : MonoBehaviour, IInteractable, IConsumable
+public class HealthPotion : Potion
 {
-    //Fields
-    private string _name;
-    private string _instanceID;
-    private string _type;
-    private string _description;
 
-    private PlayableCharacter player;
-
-    public GameObject InGameObject => gameObject;
-
-    public string InstanceID => _instanceID;
-
-    public string Type => _type;
-
-    public string Name
+    public override void Interact()
     {
-        get
-        {
-            return _name;
-        }
-
-        set
-        {
-            _name = value;
-        }
-    }
-
-    public string Description
-    {
-        get
-        {
-            return _description;
-        }
-
-        set
-        {
-            _description = value;
-        }
-    }
-
-    public void Despawn()
-    {
-        Destroy(gameObject);
-    }
-
-    public void Interact()
-    {
+        //upon inter action use it
+        //TODO: May need to add an option to store it
         Use();
     }
 
-    public void Spawn(Vector3 input)
-    {
-        Instantiate(gameObject, input, Quaternion.identity);
-    }
-
-    public void Use()
+    public override void Use()
     {
         //hard coded effect
+        //add 10 HP
+        //TODO: May need to add a heal method to damageable instead of just reversing damage
         player.Damage(-10);
     }
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        player = FindObjectOfType<PlayableCharacter>();
-    }
+        base.Initialize();
 
-    // Update is called once per frame
-    void Update()
-    {
+        this.Name = "Health Potion";
+        this.Description = "+10 HP";
         
+
+        Debug.Log("Name: " + this.Name);
     }
 }

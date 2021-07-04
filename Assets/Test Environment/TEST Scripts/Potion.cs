@@ -2,44 +2,79 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Potion : MonoBehaviour
+public abstract class Potion : MonoBehaviour, IInteractable, IConsumable
 {
 
-    //Not implementing the interface to use the unity inspector as a fast solution
-    //So the fields can be directly modified in unity
+    //Fields
+    private string _name;
+    private string _instanceID;
+    private string _type = "Consumables";
+    private string _description;
 
-    public string Type;
+    public PlayableCharacter player;
 
-    public string Name = "Potion";
+    public GameObject InGameObject => gameObject;
 
-    public string Description = "No Effect";
+    public string InstanceID => _instanceID;
 
+    public string Type => _type;
+
+    public string Name
+    {
+        get
+        {
+            return _name;
+        }
+
+        set
+        {
+            _name = value;
+        }
+    }
+
+    public string Description
+    {
+        get
+        {
+            return _description;
+        }
+
+        set
+        {
+            _description = value;
+        }
+    }
 
     public void Despawn()
     {
-        Destroy(gameObject);//destroy this
+        Destroy(gameObject);
     }
 
-    public void Interact()
-    {
-        throw new System.NotImplementedException();
-    }
+    public abstract void Interact();
 
     public void Spawn(Vector3 input)
     {
-        throw new System.NotImplementedException();
+        Instantiate(gameObject, input, Quaternion.identity);
+    }
+
+    public abstract void Use();
+
+    public void Initialize()
+    {
+        player = FindObjectOfType<PlayableCharacter>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     //Add pick up effects
@@ -50,7 +85,9 @@ public class Potion : MonoBehaviour
         {
             //Apply effects
             Debug.Log("Consumed " + Name + ":"+ Description);
+            Interact();
 
+            //Remove it
             Despawn();
         }
     }
