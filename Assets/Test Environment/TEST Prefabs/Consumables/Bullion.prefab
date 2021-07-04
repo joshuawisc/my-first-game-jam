@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 23144104961725834}
   - component: {fileID: 8746440765404866120}
   - component: {fileID: 8541731285165643457}
+  - component: {fileID: 5061099640936514461}
   m_Layer: 0
   m_Name: Bullion
   m_TagString: Untagged
@@ -113,3 +114,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 5733664678064864148, guid: 1b75fa0c34d63804bb8ca116665ea8f1, type: 3}
+--- !u!114 &5061099640936514461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248574742199784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 019f1f444bfd5a8439022b20430e4874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
