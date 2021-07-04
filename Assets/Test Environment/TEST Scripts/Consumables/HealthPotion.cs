@@ -25,8 +25,5 @@ public class HealthPotion : Consumables
 
         this.Name = "Health Potion";
         this.Description = "+10 HP";
-        
-
-        Debug.Log("Name: " + this.Name);
     }
 }
