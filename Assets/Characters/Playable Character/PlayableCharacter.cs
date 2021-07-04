@@ -24,6 +24,10 @@ public class PlayableCharacter : MonoBehaviour, ICharacter, IDamageable
 
     // prefab
     //private GameObject _self;
+
+    //pickups
+    private int _gold;
+    private int _key;
     #endregion
 
     #region Custom Fields
@@ -102,6 +106,29 @@ public class PlayableCharacter : MonoBehaviour, ICharacter, IDamageable
 
     public GameObject Actor => gameObject;
 
+    //pickups
+    public int Gold
+    {
+        get
+        {
+            return _gold;
+        }
+        set
+        {
+            _gold = value;
+        }
+    }
+    public int Key
+    {
+        get
+        {
+            return _key;
+        }
+        set
+        {
+            _key = value;
+        }
+    }
     #endregion
 
     #region PUBLIC METHODS
@@ -124,6 +151,17 @@ public class PlayableCharacter : MonoBehaviour, ICharacter, IDamageable
     public void Spawn(Vector3 input)
     {
         throw new NotImplementedException();
+    }
+
+    //Temp solution for pickups
+    public void addGold(int value)
+    {
+        _gold += value;
+    }
+
+    public void addKey(int value)
+    {
+        _key += value;
     }
     #endregion
 
