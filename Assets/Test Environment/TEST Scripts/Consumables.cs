@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Potion : MonoBehaviour, IInteractable, IConsumable
+public abstract class Consumables : MonoBehaviour, IInteractable, IConsumable
 {
 
     //Fields

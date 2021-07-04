@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthPotion : Potion
+public class HealthPotion : Consumables
 {
 
     public override void Interact()
