@@ -116,6 +116,16 @@ public class Generation : MonoBehaviour
     private void GenerateMap(int cx, int cy)
     {
         var chunk = GenerateChunk(cx, cy);
+        int retries = 0;
+        while (ValidateChunk(chunk, cx, cy) == false && retries < 3)
+        {
+            chunk = GenerateChunk(cx, cy);
+            retries++;
+        }
+        if (retries == 4 && !ValidateChunk(chunk, cx, cy))
+        {
+            throw new System.Exception("Out of Retries");
+        }
         DEBUGChunkGeneration(chunk, cx, cy);
     }
 
@@ -134,7 +144,6 @@ public class Generation : MonoBehaviour
         chunk[center, cy - 1] = end;
 
         prevMoves.Add(start);
-
         while (prevMoves.Count > 0)
         {
             var stepMoves = new List<GenerationMapShell>();
@@ -189,6 +198,21 @@ public class Generation : MonoBehaviour
         }
 
         return chunk;
+    }
+
+    private bool ValidateChunk(GenerationMapShell[,] unvalidiated_chunk, int cx, int cy)
+    {
+        // get end position
+        int center = (cx / 2);
+        var endPosition = unvalidiated_chunk[center, cy - 1];
+
+        // check the edges connected to end position
+        if (endPosition.up == null && endPosition.down == null 
+            && endPosition.left == null && endPosition.right == null)
+        {
+            return false;
+        }
+        return true;
     }
 
     /* Never report backwards
