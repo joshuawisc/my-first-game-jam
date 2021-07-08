@@ -3,7 +3,13 @@ guid: 66da647f631d3c94f9c9b5a75fd7d9fb
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - FourDoorConnector: {fileID: 3259413321995342557, guid: e15feceb220ecc8478bca886d244492d, type: 3}
+  - LConnector: {fileID: 2918934579748306737, guid: d49b831167c6eaf438239c942d867829, type: 3}
+  - TConnector: {fileID: 1689123744151861082, guid: a2be0b7fef2725743825b8f64f9c5e24, type: 3}
+  - IConnector: {fileID: 7806536545332107177, guid: 5e34dd5d44b1e194a8403bc0822d3ebb, type: 3}
+  - DeadEnd: {fileID: 999753528941238628, guid: 9e840d412f0d90742b03b39f6e204ce6, type: 3}
+  - Hallway: {fileID: 1162725485223833317, guid: ad8f78963e6a826469313a3fbc1bc972, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

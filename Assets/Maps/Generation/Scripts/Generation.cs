@@ -127,6 +127,7 @@ public class Generation : MonoBehaviour
             throw new System.Exception("Out of Retries");
         }
         DEBUGChunkGeneration(chunk, cx, cy);
+        PopulateChunk(chunk, cx, cy);
     }
 
     
@@ -265,6 +266,112 @@ public class Generation : MonoBehaviour
         }
     }
 
+    private void PopulateChunk(GenerationMapShell[,] chunk, int cx, int cy)
+    {
+        ITemplateContainer container = null;
+        try
+        {
+            container = gameObject.GetComponent<TemplateContainer>();
+        }
+        catch (System.Exception ex)
+        {
+            // TODO: try to find other method to get container
+        }
+
+        for (int x =  0; x < cx; x++)
+        {
+            for (int y = 0; y < cy; y++)
+            {
+                var shell = chunk[x, y];
+                if (shell != null)
+                {
+                    int edges = 0;
+                    bool[] edgelocations = { false, false, false, false }; //0-U 1-D 2-L 3-R
+
+                    if (shell.up != null)
+                    {
+                        edges++;
+                        edgelocations[0] = true;
+                    }
+                    if (shell.down != null)
+                    {
+                        edges++;
+                        edgelocations[1] = true;
+                    }
+                    if (shell.left != null)
+                    {
+                        edges++;
+                        edgelocations[2] = true;
+                    }
+                    if (shell.right != null)
+                    {
+                        edges++;
+                        edgelocations[3] = true;
+                    }
+
+                    if (container == null)
+                    {
+                        container = new ResourceTemplateContainer();
+                    }
+
+                    string moniker = "";
+                    // Decide Shape
+                    if (edges == 1)
+                    {
+                        // DE Connector
+                        moniker = "DeadEndRoom";
+                    }
+                    else if (edges == 2)
+                    {
+                        // I or L Connector
+                        // UpDown or LeftRight
+                        if ((edgelocations[0] && edgelocations[1]) || (edgelocations[2] && edgelocations[3]))
+                        {
+                            moniker = "I-Connector";
+                        }
+                        else
+                        {
+                            moniker = "L-Connector";
+                        }
+
+                    }
+                    else if (edges == 3)
+                    {
+                        // T Connector
+                        moniker = "T-Connector";
+                    }
+                    else if (edges == 4)
+                    {
+                        // Center Connector
+                        moniker = "4-Connector";
+                    }
+
+                    // Set the shell template -> chunk is now active
+                    shell.template = container.retrieve(moniker);
+                }
+            }
+        }
+    }
+
+    private void InstantiateChunk(GenerationMapShell[,] activeChunk, int cx, int cy)
+    {
+        for (int x = 0; x < cx; x++)
+        {
+            for (int y = 0; y < cy; y++)
+            {
+                var activeChunkElem = activeChunk[x, y];
+
+                // Get the GameObject
+
+                // Generate Quaternion
+
+                // Find the entrances of the object
+                
+                // connect 
+            }
+        }
+    }
+
     private void DEBUGChunkGeneration(GenerationMapShell[,] chunk, int cx, int cy)
     {
         string output = "";
@@ -313,10 +420,19 @@ public class Generation : MonoBehaviour
         public GenerationMapShell right;
         public GenerationMapShell up;
         public GenerationMapShell down;
+        public GameObject template;
         public GenerationMapShell(int xi, int yi) { 
             x = xi; y = yi; 
         }
     }
-    
+
+    private class ResourceTemplateContainer : ITemplateContainer
+    {
+        public GameObject retrieve(string moniker)
+        {
+            GameObject res = Resources.Load<GameObject>($"MapTemplates/{moniker}");
+            return res;
+        }
+    }
 
 }
